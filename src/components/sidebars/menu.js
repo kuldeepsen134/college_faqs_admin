@@ -9,6 +9,11 @@ const menu = [
         path: "/colleges/add",
       },
       {
+        name: "Edit College",
+        icon: "fa-tachometer-alt",
+        path: "/colleges/edit",
+      },
+      {
         name: "Colleges List",
         icon: "fa-tachometer-alt",
         path: "/colleges/list",

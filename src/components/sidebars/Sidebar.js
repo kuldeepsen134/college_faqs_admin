@@ -10,9 +10,8 @@ const ChildComponent = ({ child }) => {
         <li className="nav-item" key={item.name}>
           <Link
             to={item.path}
-            className={`nav-link ${
-              item.path == location.pathname ? "active" : null
-            }`}
+            className={`nav-link ${item.path == location.pathname ? "active" : null
+              }`}
           >
             <i className="far fa-circle nav-icon"></i>
             <p>{item.name}</p>
@@ -23,6 +22,9 @@ const ChildComponent = ({ child }) => {
   );
 };
 const Sidebar = () => {
+
+  const { pathname } = useLocation()
+
   return (
     <aside className="main-sidebar sidebar-dark-primary elevation-4">
       <Link to="/" className="brand-link">
@@ -84,9 +86,8 @@ const Sidebar = () => {
                 >
                   <Link
                     to={item.path ? item.path : "#"}
-                    className={`nav-link ${
-                      item.path == location.pathname ? "active" : ""
-                    }`}
+                    className={`nav-link ${item.path == location.pathname ? "active" : ""
+                      }`}
                   >
                     <i className={`nav-icon fas ${item?.icon}`}></i>
                     <p>

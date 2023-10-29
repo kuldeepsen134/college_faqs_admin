@@ -81,6 +81,11 @@ const TableRows = ({ rowsData, deleteTableRows, handleChange }) => {
 };
 
 const AddCollegeDetails = () => {
+
+  const { pathname } = useLocation()
+
+  console.log('path', pathname);
+
   const data = useLocation().state;
   const navigate = useNavigate();
   // const [overview, setoverview] = useState(data?.overview || "");
@@ -563,7 +568,7 @@ const AddCollegeDetails = () => {
 
   return (
     <>
-      <Header page="Add College" />
+      <Header page={pathname === '/colleges/edit' ? 'Edit College' : "Add College"} />
       <section className="content">
         <div className="row">
           <div className="col">

@@ -35,7 +35,7 @@ const ActionDropdown = ({ data, loadData }) => {
     }
   };
   const editCollege = async () => {
-    navigate("/colleges/add", { state: data });
+    navigate("/colleges/edit", { state: data });
   };
   return (
     <DropdownButton id="dropdown-basic-button" title="Action">
@@ -60,10 +60,12 @@ const ListAllColleges = () => {
       toast.error("Seomthing Went Wrong!");
     }
   };
+
   useEffect(() => {
     const cancelToken = CancelToken.source();
     loadData(cancelToken);
   }, []);
+
   const columns = [
     {
       dataField: "action",
@@ -126,7 +128,7 @@ const ListAllColleges = () => {
   };
   return (
     <>
-      <Header page="Colleges List" />
+      {/* <Header page="Colleges List" /> */}
       <section className="content">
         <div className="row">
           <div className="col">

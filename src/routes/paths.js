@@ -31,6 +31,10 @@ const path = [
     component: AddCollegeDetails,
   },
   {
+    path: "/colleges/edit",
+    component: AddCollegeDetails,
+  },
+  {
     path: "/colleges/list",
     component: ListAllColleges,
   },
