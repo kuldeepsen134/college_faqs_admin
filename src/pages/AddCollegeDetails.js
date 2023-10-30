@@ -3,7 +3,7 @@ import axios from "../api/axios";
 import Header from "../components/header/Header";
 import DropdownMultiselect from "react-multiselect-dropdown-bootstrap";
 import { toast } from "react-toastify";
-import { useLocation, useNavigate } from "react-router-dom";
+import { json, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { STATIC_URL } from "../config/config";
 
@@ -632,6 +632,10 @@ const AddCollegeDetails = () => {
                       </tr>
                       <tr>
                         <th>Top NIRF college</th>
+
+                        {console.log('datadatadata', data && data)}
+
+
                         <td>
                           <div className="form-check">
                             <input
@@ -641,7 +645,7 @@ const AddCollegeDetails = () => {
                               id="yesRadio"
                               name="topNIRF"
                               value="1"
-                              checked={isTopNIRFCollege === "1"}
+                              checked={data?.NIRF === 1 || isTopNIRFCollege === "1"}
                               onChange={() => handleRadioChange("1")}
                             />
                             <label
@@ -651,6 +655,7 @@ const AddCollegeDetails = () => {
                               Yes
                             </label>
                           </div>
+
                           <div className="form-check">
                             <input
                               required
@@ -659,7 +664,7 @@ const AddCollegeDetails = () => {
                               id="noRadio"
                               name="topNIRF"
                               value="0"
-                              checked={isTopNIRFCollege === "0"}
+                              checked={data?.NIRF === 0 || isTopNIRFCollege === "0"}
                               onChange={() => handleRadioChange("0")}
                             />
                             <label
@@ -682,7 +687,7 @@ const AddCollegeDetails = () => {
                               className="form-check-input"
                               name="topPrivate"
                               value="Yes"
-                              checked={topCollege === "private"}
+                              checked={data?.top_collage === "private" || topCollege === "private"}
                               onChange={() => setTopCollege("private")}
                             />
 
@@ -700,7 +705,7 @@ const AddCollegeDetails = () => {
                               className="form-check-input"
                               name="topGovernment"
                               value="No"
-                              checked={topCollege === "government"}
+                              checked={data?.top_collage === "government" || topCollege === "government"}
                               onChange={() => setTopCollege("government")}
                             />
 
@@ -944,7 +949,17 @@ const AddCollegeDetails = () => {
                           <div className="invalid-feedback">
                             Brochure is Required!
                           </div>
-                          {data?.brochure ? <small>{data.brochure}</small> : ""}
+
+                          {data?.brochure ? <img
+                            src={
+                              STATIC_URL +
+                              "/images/" +
+                              data?.brochure
+                            }
+                            height={"150px"}
+                          /> : ""}
+
+                          {/* {data?.brochure ? <small>{data.brochure}</small> : ""} */}
                         </td>
                       </tr>
                       {/* <tr>
@@ -1762,6 +1777,16 @@ const AddCollegeDetails = () => {
                                 setGallary(files);
                               }}
                             />
+                            {data?.brochure ? <img
+                              src={
+                                STATIC_URL +
+                                "/images/" +
+                                JSON.parse(data?.gallery_links.split(','))
+                              }
+                              height={"150px"}
+                            /> : ""}
+
+
                           </div>
                         </td>
                       </tr>
