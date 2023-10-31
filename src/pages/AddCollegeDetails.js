@@ -222,23 +222,6 @@ const AddCollegeDetails = () => {
   const [service_management, setservice_management] = useState(
     !!data?.service_management || false
   );
-  const [specialisation, setspecialisation] = useState(
-    !!data?.specialisation || false
-  );
-  const [hr_management, sethr_management] = useState(
-    !!data?.hr_management || false
-  );
-  const [marketing_management, setmarketing_management] = useState(
-    !!data?.marketing_management || false
-  );
-
-
-  const [mba_specialisation, setmba_specialisation] = useState(
-    !!data?.mba_specialisation || false
-  );
-  const [rketing_management, setrketing_management] = useState(
-    !!data?.rketing_management || false
-  );
 
   // new fields ends
 
@@ -623,11 +606,6 @@ const AddCollegeDetails = () => {
       formData.append("public_policy", +public_policy);
       formData.append("banking_insurance", +banking_insurance);
       formData.append("service_management", +service_management);
-      formData.append("specialisation", +specialisation);
-      formData.append("hr_management", +hr_management);
-      formData.append("marketing_management", +marketing_management);
-      formData.append("mba_specialisation", +mba_specialisation);
-      formData.append("rketing_management", +rketing_management);
       // End of New fields form apending
 
 
@@ -1822,106 +1800,6 @@ const AddCollegeDetails = () => {
                               htmlFor="service_management"
                             >
                               Service Management
-                            </label>
-                          </div>
-
-                          <div className="form-check">
-                            <input
-                              type="checkbox"
-                              className="form-check-input"
-                              name="specialisation"
-                              checked={specialisation}
-                              onChange={(e) =>
-                                setspecialisation(
-                                  !specialisation
-                                )
-                              }
-                            />
-                            <label
-                              className="form-check-label"
-                              htmlFor="specialisation"
-                            >
-                              Specialisation
-                            </label>
-                          </div>
-
-                          <div className="form-check">
-                            <input
-                              type="checkbox"
-                              className="form-check-input"
-                              name="hr_management"
-                              checked={hr_management}
-                              onChange={(e) =>
-                                sethr_management(
-                                  !hr_management
-                                )
-                              }
-                            />
-                            <label
-                              className="form-check-label"
-                              htmlFor="hr_management"
-                            >
-                              HR Management
-                            </label>
-                          </div>
-
-                          <div className="form-check">
-                            <input
-                              type="checkbox"
-                              className="form-check-input"
-                              name="marketing_management"
-                              checked={marketing_management}
-                              onChange={(e) =>
-                                setmarketing_management(
-                                  !marketing_management
-                                )
-                              }
-                            />
-                            <label
-                              className="form-check-label"
-                              htmlFor="marketing_management"
-                            >
-                              Marketing Management
-                            </label>
-                          </div>
-
-                          <div className="form-check">
-                            <input
-                              type="checkbox"
-                              className="form-check-input"
-                              name="mba_specialisation"
-                              checked={mba_specialisation}
-                              onChange={(e) =>
-                                setmba_specialisation(
-                                  !mba_specialisation
-                                )
-                              }
-                            />
-                            <label
-                              className="form-check-label"
-                              htmlFor="mba_specialisation"
-                            >
-                              MBA Specialisation
-                            </label>
-                          </div>
-
-                          <div className="form-check">
-                            <input
-                              type="checkbox"
-                              className="form-check-input"
-                              name="rketing_management"
-                              checked={rketing_management}
-                              onChange={(e) =>
-                                setrketing_management(
-                                  !rketing_management
-                                )
-                              }
-                            />
-                            <label
-                              className="form-check-label"
-                              htmlFor="rketing_management"
-                            >
-                              rketing Management
                             </label>
                           </div>
 
