@@ -171,9 +171,76 @@ const AddCollegeDetails = () => {
   const [mba_importExport, setmba_importExport] = useState(
     !!data?.mba_importExport || false
   );
+
+
   const [mba_informationTechnology, setmba_informationTechnology] = useState(
     !!data?.mba_informationTechnology || false
   );
+
+
+  // New states for new fields
+
+  const [supply_Chain_logistics_management, setsupply_Chain_logistics_management] = useState(
+    !!data?.supply_Chain_logistics_management || false
+  );
+
+  const [infrastructure, setinfrastructure] = useState(
+    !!data?.infrastructure || false
+  );
+
+  const [pharmaceutical_management, setpharmaceutical_management] = useState(
+    !!data?.pharmaceutical_management || false
+  );
+
+  const [oil_gas, setoil_gas] = useState(
+    !!data?.oil_gas || false
+  );
+
+  const [sports_management, setsports_management] = useState(
+    !!data?.sports_management || false
+  );
+
+  const [retail, setretail] = useState(
+    !!data?.retail || false
+  );
+  const [telecom, settelecom] = useState(
+    !!data?.telecom || false
+  );
+
+  const [textile, settextile] = useState(
+    !!data?.textile || false
+  );
+  const [tourism_ospitality, settourism_ospitality] = useState(
+    !!data?.tourism_ospitality || false
+  );
+  const [public_policy, setpublic_policy] = useState(
+    !!data?.public_policy || false
+  );
+  const [banking_insurance, setbanking_insurance] = useState(
+    !!data?.banking_insurance || false
+  );
+  const [service_management, setservice_management] = useState(
+    !!data?.service_management || false
+  );
+  const [specialisation, setspecialisation] = useState(
+    !!data?.specialisation || false
+  );
+  const [hr_management, sethr_management] = useState(
+    !!data?.hr_management || false
+  );
+  const [marketing_management, setmarketing_management] = useState(
+    !!data?.marketing_management || false
+  );
+
+
+  const [mba_specialisation, setmba_specialisation] = useState(
+    !!data?.mba_specialisation || false
+  );
+  const [rketing_management, setrketing_management] = useState(
+    !!data?.rketing_management || false
+  );
+
+  // new fields ends
 
   const [backgroundImage, setBackgroundImage] = useState(
     data?.background_image || null
@@ -541,6 +608,28 @@ const AddCollegeDetails = () => {
       formData.append("mba_financeManagement", +mba_financeManagement);
       formData.append("mba_importExport", +mba_importExport);
       formData.append("mba_informationTechnology", +mba_informationTechnology);
+
+      // New fields form apending
+      formData.append("supply_Chain_logistics_management", +supply_Chain_logistics_management);
+      formData.append("infrastructure", +infrastructure);
+      formData.append("pharmaceutical_management", +pharmaceutical_management);
+      formData.append("oil_gas", +oil_gas);
+      formData.append("sports_management", +sports_management);
+
+      formData.append("retail", +retail);
+      formData.append("telecom", +telecom);
+      formData.append("textile", +textile);
+      formData.append("tourism_ospitality", +tourism_ospitality);
+      formData.append("public_policy", +public_policy);
+      formData.append("banking_insurance", +banking_insurance);
+      formData.append("service_management", +service_management);
+      formData.append("specialisation", +specialisation);
+      formData.append("hr_management", +hr_management);
+      formData.append("marketing_management", +marketing_management);
+      formData.append("mba_specialisation", +mba_specialisation);
+      formData.append("rketing_management", +rketing_management);
+      // End of New fields form apending
+
 
       let url;
       if (data) {
@@ -1490,6 +1579,353 @@ const AddCollegeDetails = () => {
                               Information Technology
                             </label>
                           </div>
+
+                          {/* start new fields */}
+                          <div className="form-check">
+                            <input
+                              type="checkbox"
+                              className="form-check-input"
+                              name="supply_Chain_logistics_management"
+                              checked={supply_Chain_logistics_management}
+                              onChange={(e) =>
+                                setsupply_Chain_logistics_management(
+                                  !supply_Chain_logistics_management
+                                )
+                              }
+                            />
+                            <label
+                              className="form-check-label"
+                              htmlFor="supply_Chain_logistics_management"
+                            >
+                              Supply Chain & Logistics Management
+                            </label>
+                          </div>
+
+
+                          <div className="form-check">
+                            <input
+                              type="checkbox"
+                              className="form-check-input"
+                              name="infrastructure"
+                              checked={infrastructure}
+                              onChange={(e) =>
+                                setinfrastructure(
+                                  !infrastructure
+                                )
+                              }
+                            />
+                            <label
+                              className="form-check-label"
+                              htmlFor="infrastructure"
+                            >
+                              Infrastructure
+                            </label>
+                          </div>
+
+                          <div className="form-check">
+                            <input
+                              type="checkbox"
+                              className="form-check-input"
+                              name="pharmaceutical_management"
+                              checked={pharmaceutical_management}
+                              onChange={(e) =>
+                                setpharmaceutical_management(
+                                  !pharmaceutical_management
+                                )
+                              }
+                            />
+                            <label
+                              className="form-check-label"
+                              htmlFor="pharmaceutical_management"
+                            >
+                              Pharmaceutical Management
+                            </label>
+                          </div>
+
+                          <div className="form-check">
+                            <input
+                              type="checkbox"
+                              className="form-check-input"
+                              name="oil_gas"
+                              checked={oil_gas}
+                              onChange={(e) =>
+                                setoil_gas(
+                                  !oil_gas
+                                )
+                              }
+                            />
+                            <label
+                              className="form-check-label"
+                              htmlFor="oil_gas"
+                            >
+                              Oil & Gas
+                            </label>
+                          </div>
+
+                          <div className="form-check">
+                            <input
+                              type="checkbox"
+                              className="form-check-input"
+                              name="sports_management"
+                              checked={sports_management}
+                              onChange={(e) =>
+                                setsports_management(
+                                  !sports_management
+                                )
+                              }
+                            />
+                            <label
+                              className="form-check-label"
+                              htmlFor="sports_management"
+                            >
+                              Sports Management
+                            </label>
+                          </div>
+
+
+                          <div className="form-check">
+                            <input
+                              type="checkbox"
+                              className="form-check-input"
+                              name="retail"
+                              checked={retail}
+                              onChange={(e) =>
+                                setretail(
+                                  !retail
+                                )
+                              }
+                            />
+                            <label
+                              className="form-check-label"
+                              htmlFor="retail"
+                            >
+                              Retail
+                            </label>
+                          </div>
+
+                          <div className="form-check">
+                            <input
+                              type="checkbox"
+                              className="form-check-input"
+                              name="telecom"
+                              checked={telecom}
+                              onChange={(e) =>
+                                settelecom(
+                                  !telecom
+                                )
+                              }
+                            />
+                            <label
+                              className="form-check-label"
+                              htmlFor="telecom"
+                            >
+                              Telecom
+                            </label>
+                          </div>
+
+                          <div className="form-check">
+                            <input
+                              type="checkbox"
+                              className="form-check-input"
+                              name="textile"
+                              checked={textile}
+                              onChange={(e) =>
+                                settextile(
+                                  !textile
+                                )
+                              }
+                            />
+                            <label
+                              className="form-check-label"
+                              htmlFor="textile"
+                            >
+                              Textile
+                            </label>
+                          </div>
+
+                          <div className="form-check">
+                            <input
+                              type="checkbox"
+                              className="form-check-input"
+                              name="tourism_ospitality"
+                              checked={tourism_ospitality}
+                              onChange={(e) =>
+                                settourism_ospitality(
+                                  !tourism_ospitality
+                                )
+                              }
+                            />
+                            <label
+                              className="form-check-label"
+                              htmlFor="tourism_ospitality"
+                            >
+                              Tourism & Hospitality
+                            </label>
+                          </div>
+
+                          <div className="form-check">
+                            <input
+                              type="checkbox"
+                              className="form-check-input"
+                              name="public_policy"
+                              checked={public_policy}
+                              onChange={(e) =>
+                                setpublic_policy(
+                                  !public_policy
+                                )
+                              }
+                            />
+                            <label
+                              className="form-check-label"
+                              htmlFor="public_policy"
+                            >
+                              Public Policy
+                            </label>
+                          </div>
+
+
+                          <div className="form-check">
+                            <input
+                              type="checkbox"
+                              className="form-check-input"
+                              name="banking_insurance"
+                              checked={banking_insurance}
+                              onChange={(e) =>
+                                setbanking_insurance(
+                                  !banking_insurance
+                                )
+                              }
+                            />
+                            <label
+                              className="form-check-label"
+                              htmlFor="banking_insurance"
+                            >
+                              Banking & Insurance
+                            </label>
+                          </div>
+
+
+                          <div className="form-check">
+                            <input
+                              type="checkbox"
+                              className="form-check-input"
+                              name="service_management"
+                              checked={service_management}
+                              onChange={(e) =>
+                                setservice_management(
+                                  !service_management
+                                )
+                              }
+                            />
+                            <label
+                              className="form-check-label"
+                              htmlFor="service_management"
+                            >
+                              Service Management
+                            </label>
+                          </div>
+
+                          <div className="form-check">
+                            <input
+                              type="checkbox"
+                              className="form-check-input"
+                              name="specialisation"
+                              checked={specialisation}
+                              onChange={(e) =>
+                                setspecialisation(
+                                  !specialisation
+                                )
+                              }
+                            />
+                            <label
+                              className="form-check-label"
+                              htmlFor="specialisation"
+                            >
+                              Specialisation
+                            </label>
+                          </div>
+
+                          <div className="form-check">
+                            <input
+                              type="checkbox"
+                              className="form-check-input"
+                              name="hr_management"
+                              checked={hr_management}
+                              onChange={(e) =>
+                                sethr_management(
+                                  !hr_management
+                                )
+                              }
+                            />
+                            <label
+                              className="form-check-label"
+                              htmlFor="hr_management"
+                            >
+                              HR Management
+                            </label>
+                          </div>
+
+                          <div className="form-check">
+                            <input
+                              type="checkbox"
+                              className="form-check-input"
+                              name="marketing_management"
+                              checked={marketing_management}
+                              onChange={(e) =>
+                                setmarketing_management(
+                                  !marketing_management
+                                )
+                              }
+                            />
+                            <label
+                              className="form-check-label"
+                              htmlFor="marketing_management"
+                            >
+                              Marketing Management
+                            </label>
+                          </div>
+
+                          <div className="form-check">
+                            <input
+                              type="checkbox"
+                              className="form-check-input"
+                              name="mba_specialisation"
+                              checked={mba_specialisation}
+                              onChange={(e) =>
+                                setmba_specialisation(
+                                  !mba_specialisation
+                                )
+                              }
+                            />
+                            <label
+                              className="form-check-label"
+                              htmlFor="mba_specialisation"
+                            >
+                              MBA Specialisation
+                            </label>
+                          </div>
+
+                          <div className="form-check">
+                            <input
+                              type="checkbox"
+                              className="form-check-input"
+                              name="rketing_management"
+                              checked={rketing_management}
+                              onChange={(e) =>
+                                setrketing_management(
+                                  !rketing_management
+                                )
+                              }
+                            />
+                            <label
+                              className="form-check-label"
+                              htmlFor="rketing_management"
+                            >
+                              rketing Management
+                            </label>
+                          </div>
+
+                          {/* End new fields */}
                         </td>
                       </tr>
 
