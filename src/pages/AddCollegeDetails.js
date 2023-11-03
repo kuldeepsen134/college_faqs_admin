@@ -84,7 +84,7 @@ const AddCollegeDetails = () => {
 
   const { pathname } = useLocation()
 
-  console.log('path', pathname);
+  // console.log('path', pathname);
 
   const data = useLocation().state;
   const navigate = useNavigate();
@@ -97,7 +97,7 @@ const AddCollegeDetails = () => {
   const [sw_pi, setsw_pi] = useState(data?.sw_pi || "");
   const [sw_ap, setsw_ap] = useState(data?.sw_ap || "");
   const [sw_we, setsw_we] = useState(data?.sw_we || "");
-  const [placements, setplacements] = useState(data?.placements || "");
+  // const [placements, setplacements] = useState(data?.placements || "");
   const [sm_fb, setsm_fb] = useState(data?.sm_fb || "");
   const [sm_li, setsm_li] = useState(data?.sm_li || "");
   const [sm_ytb, setsm_ytb] = useState(data?.sm_ytb || "");
@@ -286,6 +286,74 @@ const AddCollegeDetails = () => {
     fetchPrograms();
   }, [data]);
 
+  useEffect(() => {
+    if (pathname === '/colleges/add') {
+      setStates([])
+      setCities([])
+      setStateId('')
+      setCityId('')
+      setIsSubmit(false)
+      setTotalFees('')
+      setRanking('')
+      setProgram('')
+      setPlacement('')
+      setBrochure('')
+      setCollegeType('')
+      setcollegename('')
+      setlocation('')
+      setEstablishedYear('')
+      setmba_marketing(false)
+      setmba_finance(false)
+      setmba_financeManagement(false)
+      setmba_fashionDesign(false)
+      setmba_familyBusiness(false)
+      setmba_event(false)
+      setmba_aviation(false)
+      setmba_energy(false)
+      setmba_entrepreneurship(false)
+      setmba_digitalMarketing(false)
+      setmba_corporateSocialResponsibility(false)
+      setmba_advertisingCommunications(false)
+      setmba_agriBusiness(false)
+      setmba_bankingFinance(false)
+      setmba_businessAnalytics(false)
+      setmba_internationalBusiness(false)
+      setmba_operations(false)
+      setmba_ruralManagement(false)
+      setmba_hr(false)
+      setservice_management(false)
+      setbanking_insurance(false)
+      setpublic_policy(false)
+      settourism_ospitality(false)
+      settextile(false)
+      settelecom(false)
+      setretail(false)
+      setsports_management(false)
+      setoil_gas(false)
+      setpharmaceutical_management(false)
+      setinfrastructure(false)
+      setsupply_Chain_logistics_management(false)
+      setmba_informationTechnology(false)
+      setmba_importExport(false)
+      setcf_ac(false)
+      setcf_audi(false)
+      setcf_cafe(false)
+      setcf_gym(false)
+      setcf_hmf(false)
+      setcf_hostel(false)
+      setcf_labs(false)
+      setcf_library(false)
+      setcf_sports(false)
+      setcf_wifi(false)
+      setsm_fb('')
+      setsm_ytb('')
+      setsm_ttr('')
+      setsm_li('')
+      // setKey_High()
+    }
+  }, [pathname])
+
+  console.log('states', stateId);
 
   /** ADD MULTIPLE FIELDS CODE START FOR OVERVIEW*/
 
@@ -398,6 +466,35 @@ const AddCollegeDetails = () => {
 
   const updateFieldValueAdm_Elg = (index, field, value) => {
     setAdm_Elg((prevFields) => {
+      const updatedFields = [...prevFields];
+      updatedFields[index][field] = value;
+      return updatedFields;
+    });
+  };
+  /**END CODE FOR MULTIPLE FIELDS */
+  /** ADD MULTIPLE FIELDS CODE START FOR placements Highlights*/
+
+  const [placements, setplacements] = useState([
+    {
+      sr_no: 1,
+      text: ""
+    },
+  ]);
+  const addInputFieldplacements = () => {
+    const sr_no = placements.length + 1;
+    const newField = {
+      sr_no,
+      text: "",
+    };
+    setplacements((prevFields) => [...prevFields, newField]);
+  };
+
+  const removeInputFieldplacements = (index) => {
+    setplacements((prevFields) => prevFields.filter((_, i) => i !== index));
+  };
+
+  const updateFieldValueplacements = (index, field, value) => {
+    setplacements((prevFields) => {
       const updatedFields = [...prevFields];
       updatedFields[index][field] = value;
       return updatedFields;
@@ -524,10 +621,10 @@ const AddCollegeDetails = () => {
         "background_image",
         backgroundImage || body?.background_image
       );
-      formData.append("overview[]", modifyObject(overviewFields));
-      formData.append("key_highlight[]", modifyObject(key_High));
-      formData.append("adm_elg[]", modifyObject(adm_Elg));
-      formData.append("rankingArray[]", modifyObject(ran_Acc));
+      formData.append("overview[]", overviewFields);
+      formData.append("key_highlight[]", key_High);
+      formData.append("adm_elg[]", adm_Elg);
+      formData.append("rankingArray[]", ran_Acc);
       formData.append("placement", placement);
       formData.append("ranking", ranking);
       formData.append("totalFees", totalFees);
@@ -542,7 +639,9 @@ const AddCollegeDetails = () => {
       formData.append("sw_pi", sw_pi);
       formData.append("sw_ap", sw_ap);
       formData.append("sw_we", sw_we);
-      formData.append("placements", placements);
+      // formData.append("placements", placements);
+      formData.append("placements[]", modifyObject(placements));
+
       formData.append("sm_fb", sm_fb);
       formData.append("sm_li", sm_li);
       formData.append("sm_ytb", sm_ytb);
@@ -700,7 +799,6 @@ const AddCollegeDetails = () => {
                       <tr>
                         <th>Top NIRF college</th>
 
-                        {console.log('datadatadata', data && data)}
 
 
                         <td>
@@ -952,7 +1050,6 @@ const AddCollegeDetails = () => {
                         <th>Ranking</th>
                         <td>
                           <input
-                            required
                             type="text"
                             className="form-control"
                             id="ranking"
@@ -1029,23 +1126,6 @@ const AddCollegeDetails = () => {
                           {/* {data?.brochure ? <small>{data.brochure}</small> : ""} */}
                         </td>
                       </tr>
-                      {/* <tr>
-                        <th>Overview</th>
-                        <td>
-                          {" "}
-                          <textarea
-                            required
-                            className="form-control"
-                            rows="3"
-                            placeholder="Enter Overview"
-                            value={overview}
-                            onChange={(e) => setoverview(e.target.value)}
-                          ></textarea>{" "}
-                          <div className="invalid-feedback">
-                            Overview is Required!
-                          </div>
-                        </td>
-                      </tr> */}
                       <tr>
                         <th>Overview</th>
                         {overviewFields.map((field, index) => (
@@ -1905,6 +1985,70 @@ const AddCollegeDetails = () => {
                         ))}
                       </tr>
                       <tr>
+                        <th>Placement Highlights </th>
+
+                        {placements.map((field, index) => (
+                          <tr key={index}>
+                            <div style={{ display: "flex" }}>
+                              <td>
+                                <span
+                                  id="sr_no"
+                                  className="btn-secondary"
+                                >{field.sr_no + ")"}</span>
+                              </td>
+                              <td>
+                                <input
+                                  style={{ width: "440px", marginLeft: "13px" }}
+                                  type="text"
+                                  className="form-control"
+                                  id="text"
+                                  placeholder=""
+                                  value={field.text}
+                                  onChange={(e) =>
+                                    updateFieldValueplacements(
+                                      index,
+                                      "text",
+                                      e.target.value
+                                    )
+                                  }
+                                />
+                              </td>
+                            </div>
+                            {overviewFields[index]?.sr_no == 1 ? (
+                              <td>
+                                <button
+                                  type="button"
+                                  name="add_row"
+                                  id="add_row"
+                                  className="btn btn-success btn-xs"
+                                  onClick={addInputFieldplacements}
+                                >
+                                  +
+                                </button>
+                              </td>
+                            ) : (
+                              ""
+                            )}
+                            {overviewFields[index]?.sr_no != 1 ? (
+                              <td>
+                                <button
+                                  type="button"
+                                  name="add_row"
+                                  id="add_row"
+                                  className="btn btn-danger btn-xs remove_row"
+                                  onClick={() => removeInputFieldplacements(index)}
+                                >
+                                  X
+                                </button>
+                              </td>
+                            ) : (
+                              ""
+                            )}
+                          </tr>
+                        ))}
+                      </tr>
+
+                      {/* <tr>
                         <th>Placement Highlights</th>
                         <td>
                           {" "}
@@ -1920,7 +2064,7 @@ const AddCollegeDetails = () => {
                             Placements is Required!
                           </div>
                         </td>
-                      </tr>
+                      </tr> */}
                       <tr>
                         <th>Campus Facilities</th>
 
