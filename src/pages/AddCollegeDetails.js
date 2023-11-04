@@ -502,11 +502,18 @@ const AddCollegeDetails = () => {
 
   /**Code For Modify This 4 objects to right format */
   function modifyObject(inputArray) {
+    // const resultArray = inputArray.map(item => item.text);
     const resultArray = inputArray.map(item => item.text);
     return resultArray;
   }
   /**END FUNCTION */
 
+  useEffect(() => {
+    modifyObject(key_High)
+  }, [key_High])
+
+
+  console.log('key_High',);
 
 
 
@@ -1479,8 +1486,7 @@ const AddCollegeDetails = () => {
                               Digital Marketing
                             </label>
                           </div>
-                        </td>
-                        <td>
+
                           <div className="form-check">
                             <input
                               type="checkbox"
@@ -1543,6 +1549,12 @@ const AddCollegeDetails = () => {
                               Event
                             </label>
                           </div>
+
+
+
+                        </td>
+                        <td>
+
 
                           <div className="form-check">
                             <input
