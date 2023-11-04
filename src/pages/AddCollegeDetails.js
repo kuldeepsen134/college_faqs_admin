@@ -353,8 +353,6 @@ const AddCollegeDetails = () => {
     }
   }, [pathname])
 
-  console.log('states', stateId);
-
   /** ADD MULTIPLE FIELDS CODE START FOR OVERVIEW*/
 
   const [overviewFields, setOverviewFields] = useState([
@@ -504,7 +502,7 @@ const AddCollegeDetails = () => {
 
   /**Code For Modify This 4 objects to right format */
   function modifyObject(inputArray) {
-    const resultArray = inputArray.map(item => item.text.charAt(0).toUpperCase() + item.text.slice(1).toLowerCase());
+    const resultArray = inputArray.map(item => item.text);
     return resultArray;
   }
   /**END FUNCTION */
@@ -621,10 +619,10 @@ const AddCollegeDetails = () => {
         "background_image",
         backgroundImage || body?.background_image
       );
-      formData.append("overview[]", overviewFields);
-      formData.append("key_highlight[]", key_High);
-      formData.append("adm_elg[]", adm_Elg);
-      formData.append("rankingArray[]", ran_Acc);
+      formData.append("overview[]", modifyObject(overviewFields));
+      formData.append("key_highlight[]", modifyObject(key_High));
+      formData.append("adm_elg[]", modifyObject(adm_Elg));
+      formData.append("rankingArray[]", modifyObject(ran_Acc));
       formData.append("placement", placement);
       formData.append("ranking", ranking);
       formData.append("totalFees", totalFees);
