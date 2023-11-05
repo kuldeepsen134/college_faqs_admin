@@ -88,6 +88,10 @@ const AddCollegeDetails = () => {
 
   const data = useLocation().state;
   const navigate = useNavigate();
+
+  // console.log('data>>>>>>>>>>>', data);
+
+
   // const [overview, setoverview] = useState(data?.overview || "");
   // const [key_highlight, setkey_highlight] = useState(data?.key_highlight || "");
   // const [adm_elg, setadm_elg] = useState(data?.adm_elg || "");
@@ -362,6 +366,7 @@ const AddCollegeDetails = () => {
     },
   ]);
   const addInputField = () => {
+    console.log('dadaaaaaaaaaaaaaaaaaa');
     const sr_no = overviewFields.length + 1;
     const newField = {
       sr_no,
@@ -513,7 +518,7 @@ const AddCollegeDetails = () => {
   }, [key_High])
 
 
-  console.log('key_High',);
+  // console.log('key_High',);
 
 
 
@@ -736,6 +741,56 @@ const AddCollegeDetails = () => {
       setIsSubmit(false);
     }
   };
+
+  // console.log('data', data);
+
+  useEffect(() => {
+    if (pathname === '/colleges/edit') {
+
+      let overviewData = !!data && data?.get_overview?.map((res, i) => {
+        return {
+          sr_no: i + 1,
+          text: res.value
+        }
+      })
+
+      let key_High = !!data && data?.get_key_highlight?.map((res, i) => {
+        return {
+          sr_no: i + 1,
+          text: res.value
+        }
+      })
+      let eligibility = !!data && data?.get_adm_elg?.map((res, i) => {
+        return {
+          sr_no: i + 1,
+          text: res.value
+        }
+      })
+      let placementData = !!data && data?.get_placements?.map((res, i) => {
+        return {
+          sr_no: i + 1,
+          text: res.value
+        }
+      })
+      let rackData = !!data && data?.get_Ranking_array?.map((res, i) => {
+        return {
+          sr_no: i + 1,
+          text: res.value
+        }
+      })
+
+
+      console.log('Eligibility', placementData);
+
+
+
+      setOverviewFields(overviewData)
+      setKey_High(key_High)
+      setAdm_Elg(eligibility)
+      setplacements(placementData)
+      setRan_Acc(rackData)
+    }
+  }, [])
 
   return (
     <>
@@ -1133,65 +1188,197 @@ const AddCollegeDetails = () => {
                       </tr>
                       <tr>
                         <th>Overview</th>
-                        {overviewFields.map((field, index) => (
-                          <tr key={index}>
-                            <div style={{ display: "flex" }}>
-                              <td>
-                                <span
-                                  id="sr_no"
-                                  className="btn-secondary"
-                                >{field.sr_no + ")"}</span>
-                              </td>
-                              <td>
-                                <input
-                                  style={{ width: "440px", marginLeft: "13px" }}
-                                  type="text"
-                                  className="form-control"
-                                  id="text"
-                                  placeholder=""
-                                  value={field.text}
-                                  onChange={(e) =>
-                                    updateFieldValue(
-                                      index,
-                                      "text",
-                                      e.target.value
-                                    )
-                                  }
-                                />
-                              </td>
-                            </div>
-                            {overviewFields[index]?.sr_no == 1 ? (
-                              <td>
-                                <button
-                                  type="button"
-                                  name="add_row"
-                                  id="add_row"
-                                  className="btn btn-success btn-xs"
-                                  onClick={addInputField}
-                                >
-                                  +
-                                </button>
-                              </td>
-                            ) : (
-                              ""
-                            )}
-                            {overviewFields[index]?.sr_no != 1 ? (
-                              <td>
-                                <button
-                                  type="button"
-                                  name="add_row"
-                                  id="add_row"
-                                  className="btn btn-danger btn-xs remove_row"
-                                  onClick={() => removeInputField(index)}
-                                >
-                                  X
-                                </button>
-                              </td>
-                            ) : (
-                              ""
-                            )}
-                          </tr>
-                        ))}
+                        {
+                          // pathname === '/colleges/edit' ?
+                          //   <>
+                          //     {data?.get_overview?.map((overView, index) => {
+                          //       return (
+                          //         <tr key={overView?.id}>
+                          //           <div style={{ display: "flex" }}>
+                          //             <td>
+                          //               <span
+                          //                 id="sr_no"
+                          //                 className="btn-secondary"
+                          //               >{overView?.id + ")"}</span>
+                          //             </td>
+                          //             <td>
+                          //               <input
+                          //                 style={{ width: "440px", marginLeft: "13px" }}
+                          //                 type="text"
+                          //                 className="form-control"
+                          //                 id="text"
+                          //                 placeholder=""
+                          //                 value={overView?.value}
+                          //               // onChange={(e) =>
+                          //               //   updateFieldValue(
+                          //               //     index,
+                          //               //     "text",
+                          //               //     e.target.value
+                          //               //   )
+                          //               // }
+                          //               />
+                          //             </td>
+
+
+                          //           </div>
+
+                          //           {overviewFields[index]?.sr_no == 1 ? <td>
+                          //             <button
+                          //               type="button"
+                          //               name="add_row"
+                          //               id="add_row"
+                          //               className="btn btn-success btn-xs"
+                          //               onClick={addInputField}
+                          //             >
+                          //               +
+                          //             </button>
+                          //           </td>
+                          //             : ''}
+                          //           {overviewFields[index]?.sr_no != 1 ? (
+                          //             <td>
+                          //               <button
+                          //                 type="button"
+                          //                 name="add_row"
+                          //                 id="add_row"
+                          //                 className="btn btn-danger btn-xs remove_row"
+                          //                 onClick={() => removeInputField(index)}
+                          //               >
+                          //                 X
+                          //               </button>
+                          //             </td>
+                          //           ) : (
+                          //             ""
+                          //           )}
+                          //         </tr>
+                          //       )
+                          //     })}
+
+                          //     {
+
+
+                          //     }
+
+                          //     {overviewFields.length > 1 && overviewFields?.map((field, index) => (
+                          //       <tr key={index}>
+                          //         <div style={{ display: "flex" }}>
+                          //           <td>
+                          //             <span
+                          //               id="sr_no"
+                          //               className="btn-secondary"
+                          //             >{field.sr_no + ")"}</span>
+                          //           </td>
+                          //           <td>
+                          //             <input
+                          //               style={{ width: "440px", marginLeft: "13px" }}
+                          //               type="text"
+                          //               className="form-control"
+                          //               id="text"
+                          //               placeholder=""
+                          //               value={field.text}
+                          //               onChange={(e) =>
+                          //                 updateFieldValue(
+                          //                   index,
+                          //                   "text",
+                          //                   e.target.value
+                          //                 )
+                          //               }
+                          //             />
+                          //           </td>
+                          //           {/* {overviewFields[index]?.sr_no == 1 ? (
+                          //             <td>
+                          //               <button
+                          //                 type="button"
+                          //                 name="add_row"
+                          //                 id="add_row"
+                          //                 className="btn btn-success btn-xs"
+                          //                 onClick={addInputField}
+                          //               >
+                          //                 +
+                          //               </button>
+                          //             </td>
+                          //           ) : (
+                          //             ""
+                          //           )} */}
+                          //           {overviewFields[index]?.sr_no != 1 ? (
+                          //             <td>
+                          //               <button
+                          //                 type="button"
+                          //                 name="add_row"
+                          //                 id="add_row"
+                          //                 className="btn btn-danger btn-xs remove_row"
+                          //                 onClick={() => removeInputField(index)}
+                          //               >
+                          //                 X
+                          //               </button>
+                          //             </td>
+                          //           ) : (
+                          //             ""
+                          //           )}
+
+                          //         </div>
+                          //       </tr>
+                          //     ))}
+                          //   </>
+                          //   :
+                          overviewFields?.map((field, index) => (
+                            <tr key={index}>
+                              <div style={{ display: "flex" }}>
+                                <td>
+                                  <span
+                                    id="sr_no"
+                                    className="btn-secondary"
+                                  >{field.sr_no + ")"}</span>
+                                </td>
+                                <td>
+                                  <input
+                                    style={{ width: "440px", marginLeft: "13px" }}
+                                    type="text"
+                                    className="form-control"
+                                    id="text"
+                                    placeholder=""
+                                    value={field.text}
+                                    onChange={(e) =>
+                                      updateFieldValue(
+                                        index,
+                                        "text",
+                                        e.target.value
+                                      )
+                                    }
+                                  />
+                                </td>
+                              </div>
+                              {overviewFields[index]?.sr_no == 1 ? (
+                                <td>
+                                  <button
+                                    type="button"
+                                    name="add_row"
+                                    id="add_row"
+                                    className="btn btn-success btn-xs"
+                                    onClick={addInputField}
+                                  >
+                                    +
+                                  </button>
+                                </td>
+                              ) : (
+                                ""
+                              )}
+                              {overviewFields[index]?.sr_no != 1 ? (
+                                <td>
+                                  <button
+                                    type="button"
+                                    name="add_row"
+                                    id="add_row"
+                                    className="btn btn-danger btn-xs remove_row"
+                                    onClick={() => removeInputField(index)}
+                                  >
+                                    X
+                                  </button>
+                                </td>
+                              ) : (
+                                ""
+                              )}
+                            </tr>
+                          ))}
                       </tr>
                       <tr>
                         <th>Ranking and Accreditations</th>
@@ -1997,7 +2184,7 @@ const AddCollegeDetails = () => {
                       <tr>
                         <th>Placement Highlights </th>
 
-                        {placements.map((field, index) => (
+                        {placements && placements?.map((field, index) => (
                           <tr key={index}>
                             <div style={{ display: "flex" }}>
                               <td>
@@ -2368,7 +2555,7 @@ const AddCollegeDetails = () => {
 
                       <tr>
                         <th>Key Highlights </th>
-                        {key_High.map((field, index) => (
+                        {key_High && key_High?.map((field, index) => (
                           <tr key={index}>
                             <div style={{ display: "flex" }}>
                               <td>
@@ -2445,7 +2632,7 @@ const AddCollegeDetails = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section >
     </>
   );
 };

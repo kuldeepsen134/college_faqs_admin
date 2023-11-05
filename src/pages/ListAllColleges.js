@@ -23,13 +23,31 @@ const ActionDropdown = ({ data, loadData }) => {
         { id: data.id },
         { headers: { authorization: "Bearer " + auth.token } }
       );
+
+
+      let ddd = await request
+      console.log('request', ddd.data);
+      // if (ddd.data.success) {
+      //   toast.promise(request, {
+      //     success: `College Deleted Successfully!`,
+      //   })
+      // } else {
+      //   toast.promise(request, {
+      //     success: `Something went Wrong!`,
+      //   })
+      // }
+
       const response = await toast.promise(request, {
         pending: "Deleting College",
         success: `College Deleted Successfully!`,
         error: "Something went Wrong!",
       });
-      console.log(response.data);
-      loadData();
+
+      if (response.data.success) {
+        loadData();
+      }
+
+      // console.log(response.data);
     } catch (err) {
       console.log(err);
     }
@@ -50,10 +68,8 @@ const ListAllColleges = () => {
   const [data, setData] = useState([]);
   const loadData = async (cancelToken) => {
     try {
-      const response = await axios.get("/admin/colleges/list", {
-        cancelToken: cancelToken.token,
-      });
-      console.log(response.data.colleges);
+      const response = await axios.get("/admin/colleges/list",);
+      // console.log(response.data.colleges);
       response?.data?.success && setData(response.data.colleges);
     } catch (err) {
       console.error(err);

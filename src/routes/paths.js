@@ -13,6 +13,7 @@ import BannersTable from "../pages/BannersTable";
 import PushUpdate from "../pages/PushUpdate";
 import UpdatesList from "../pages/UpdatesList";
 import AnalyticsList from "../pages/AnalyticsList";
+import CollegeListEdit from "../pages/editCollegeDetail";
 const path = [
   {
     path: "/",
@@ -34,6 +35,10 @@ const path = [
     path: "/colleges/edit",
     component: AddCollegeDetails,
   },
+  // {
+  //   path: "/colleges/edit",
+  //   component: CollegeListEdit,
+  // },
   {
     path: "/colleges/list",
     component: ListAllColleges,
