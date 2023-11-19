@@ -119,6 +119,7 @@ const AddCollegeDetails = () => {
   const [collegename, setcollegename] = useState(data?.college_name || "");
   const [location, setlocation] = useState(data?.location || "");
   const [collegeimage, setcollegeimage] = useState(data?.college_image || "");
+  
   const [rowsData, setRowsData] = useState([]);
   const [mba_marketing, setmba_marketing] = useState(
     !!data?.mba_marketing || false
@@ -506,9 +507,27 @@ const AddCollegeDetails = () => {
   /**END CODE FOR MULTIPLE FIELDS */
 
   /**Code For Modify This 4 objects to right format */
+  // function modifyObject(inputArray) {
+
+  //   console.log('adsfadsfadsfadsf', inputArray);
+  //   // const resultArray = inputArray.map(item => item.text);
+  //   const resultArray = inputArray.map(item => item.text);
+  //   return resultArray;
+  // }
+
+
   function modifyObject(inputArray) {
-    // const resultArray = inputArray.map(item => item.text);
-    const resultArray = inputArray.map(item => item.text);
+    const resultArray = [];
+
+    inputArray.forEach(item => {
+      if (item.text.includes(',')) {
+        resultArray.push(item.text);
+      } else {
+        const texts = item.text.split(',').map(text => text.trim());
+        resultArray.push(...texts);
+      }
+    });
+    console.log('resultArray>>>>', resultArray);
     return resultArray;
   }
   /**END FUNCTION */
@@ -631,10 +650,13 @@ const AddCollegeDetails = () => {
         "background_image",
         backgroundImage || body?.background_image
       );
-      formData.append("overview[]", modifyObject(overviewFields));
-      formData.append("key_highlight[]", modifyObject(key_High));
-      formData.append("adm_elg[]", modifyObject(adm_Elg));
-      formData.append("rankingArray[]", modifyObject(ran_Acc));
+
+      formData.append("overview[]", JSON.stringify(overviewFields));
+      formData.append("key_highlight[]", JSON.stringify(key_High));
+      formData.append("adm_elg[]", JSON.stringify(adm_Elg));
+      formData.append("rankingArray[]", JSON.stringify(ran_Acc));
+
+
       formData.append("placement", placement);
       formData.append("ranking", ranking);
       formData.append("totalFees", totalFees);
@@ -650,7 +672,10 @@ const AddCollegeDetails = () => {
       formData.append("sw_ap", sw_ap);
       formData.append("sw_we", sw_we);
       // formData.append("placements", placements);
-      formData.append("placements[]", modifyObject(placements));
+      console.log('placements[]<<<<<<<<<<<<<<<', modifyObject(placements));
+      formData.append("placements[]", JSON.stringify(placements));
+
+      // formData.append("placements[]", modifyObject(placements));
 
       formData.append("sm_fb", sm_fb);
       formData.append("sm_li", sm_li);
@@ -670,7 +695,9 @@ const AddCollegeDetails = () => {
       galleryArray.forEach((file, index) => {
         formData.append(`gallary-${index}`, file);
       });
+
       formData.append("programs", JSON.stringify(rowsData));
+
       formData.append("tag", tag.join());
       formData.append("mba_marketing", +mba_marketing);
       formData.append("mba_finance", +mba_finance);
