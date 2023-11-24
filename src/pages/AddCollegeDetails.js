@@ -777,7 +777,7 @@ const AddCollegeDetails = () => {
       let overviewData = !!data && data?.get_overview?.map((res, i) => {
         return {
           sr_no: i + 1,
-          text: res.value
+          text: res.overview
         }
       })
 
@@ -891,7 +891,6 @@ const AddCollegeDetails = () => {
                         <td>
                           <div className="form-check">
                             <input
-                              required
                               type="radio"
                               className="form-check-input"
                               id="yesRadio"
@@ -910,7 +909,6 @@ const AddCollegeDetails = () => {
 
                           <div className="form-check">
                             <input
-                              required
                               type="radio"
                               className="form-check-input"
                               id="noRadio"
@@ -934,7 +932,6 @@ const AddCollegeDetails = () => {
                         <td>
                           <div className="form-check">
                             <input
-                              required
                               type="radio"
                               className="form-check-input"
                               name="topPrivate"
@@ -952,7 +949,6 @@ const AddCollegeDetails = () => {
                           </div>
                           <div className="form-check">
                             <input
-                              required
                               type="radio"
                               className="form-check-input"
                               name="topGovernment"
