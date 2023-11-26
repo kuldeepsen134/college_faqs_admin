@@ -119,7 +119,7 @@ const AddCollegeDetails = () => {
   const [collegename, setcollegename] = useState(data?.college_name || "");
   const [location, setlocation] = useState(data?.location || "");
   const [collegeimage, setcollegeimage] = useState(data?.college_image || "");
-  
+
   const [rowsData, setRowsData] = useState([]);
   const [mba_marketing, setmba_marketing] = useState(
     !!data?.mba_marketing || false
@@ -518,8 +518,8 @@ const AddCollegeDetails = () => {
 
   function modifyObject(inputArray) {
     const resultArray = [];
-
-    inputArray.forEach(item => {
+    console.log('inputArray>>>>>>', inputArray);
+    inputArray?.forEach(item => {
       if (item.text.includes(',')) {
         resultArray.push(item.text);
       } else {
@@ -672,7 +672,6 @@ const AddCollegeDetails = () => {
       formData.append("sw_ap", sw_ap);
       formData.append("sw_we", sw_we);
       // formData.append("placements", placements);
-      console.log('placements[]<<<<<<<<<<<<<<<', modifyObject(placements));
       formData.append("placements[]", JSON.stringify(placements));
 
       // formData.append("placements[]", modifyObject(placements));
@@ -751,7 +750,6 @@ const AddCollegeDetails = () => {
       } else {
         url = "/admin/colleges/add";
       }
-      console.log(formData);
       const request = axios.post(url, formData, {
         headers: { authorization: "Bearer " + auth.token },
       });
@@ -769,46 +767,44 @@ const AddCollegeDetails = () => {
     }
   };
 
-  // console.log('data', data);
 
   useEffect(() => {
     if (pathname === '/colleges/edit') {
-
+      console.log('dataEdit collage>>>>', data);
       let overviewData = !!data && data?.get_overview?.map((res, i) => {
+
+
         return {
-          sr_no: i + 1,
+          sr_no: res.id,
           text: res.overview
         }
       })
 
-      let key_High = !!data && data?.get_key_highlight?.map((res, i) => {
+      let key_High = !!data && data?.get_key_highlights?.map((res, i) => {
         return {
-          sr_no: i + 1,
-          text: res.value
+          sr_no: res.id,
+          text: res.key_highlight
         }
       })
       let eligibility = !!data && data?.get_adm_elg?.map((res, i) => {
         return {
-          sr_no: i + 1,
-          text: res.value
+          sr_no: res.id,
+          text: res.adm_elg
         }
       })
       let placementData = !!data && data?.get_placements?.map((res, i) => {
         return {
-          sr_no: i + 1,
-          text: res.value
+          sr_no: res.id,
+          text: res.placement_heighlit
+
         }
       })
-      let rackData = !!data && data?.get_Ranking_array?.map((res, i) => {
+      let rackData = !!data && data?.get_Ranking_arrays?.map((res, i) => {
         return {
-          sr_no: i + 1,
-          text: res.value
+          sr_no: res.id,
+          text: res.ranking_accreditation
         }
       })
-
-
-      console.log('Eligibility', placementData);
-
 
 
       setOverviewFields(overviewData)
@@ -1405,7 +1401,7 @@ const AddCollegeDetails = () => {
                       </tr>
                       <tr>
                         <th>Ranking and Accreditations</th>
-                        {ran_Acc.map((field, index) => (
+                        {ran_Acc?.map((field, index) => (
                           <tr key={index}>
                             <div style={{ display: "flex" }}>
                               <td>
@@ -2144,7 +2140,7 @@ const AddCollegeDetails = () => {
                       <tr>
                         <th>Admissions </th>
                         <td style={{ display: "flex" }}>Eligibility</td>
-                        {adm_Elg.map((field, index) => (
+                        {adm_Elg?.map((field, index) => (
                           <tr key={index}>
                             <div style={{ display: "flex" }}>
                               <td>
