@@ -345,14 +345,14 @@ const CollegeListEdit = () => {
                             Brochure is Required!
                           </div>
 
-                          {/* {data?.brochure ? <img
+                          {data?.brochure ? <img
                             src={
                               STATIC_URL +
-                              "/images/" +
+                              "/files/" +
                               data?.brochure
                             }
                             height={"150px"}
-                          /> : ""} */}
+                          /> : ""}
 
                           {/* {data?.brochure ? <small>{data.brochure}</small> : ""} */}
                         </td>

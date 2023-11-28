@@ -519,7 +519,7 @@ const AddCollegeDetails = () => {
   function modifyObject(inputArray) {
     const resultArray = [];
     console.log('inputArray>>>>>>', inputArray);
-    inputArray?.forEach(item => {
+    inputArray && inputArray?.forEach(item => {
       if (item.text.includes(',')) {
         resultArray.push(item.text);
       } else {
@@ -814,6 +814,12 @@ const AddCollegeDetails = () => {
       setRan_Acc(rackData)
     }
   }, [])
+
+
+  let imageArray = ''
+  if (data) {
+    imageArray = JSON.parse(data?.gallery_links)
+  }
 
   return (
     <>
@@ -1193,16 +1199,9 @@ const AddCollegeDetails = () => {
                             Brochure is Required!
                           </div>
 
-                          {data?.brochure ? <img
-                            src={
-                              STATIC_URL +
-                              "/images/" +
-                              data?.brochure
-                            }
-                            height={"150px"}
-                          /> : ""}
+                          {/* {data?.brochure ? <img src={STATIC_URL + "/images/" + data?.brochure} height={"150px"} /> : <img src={STATIC_URL + "/images/" + data?.brochure} height={"150px"} />} */}
 
-                          {/* {data?.brochure ? <small>{data.brochure}</small> : ""} */}
+                          {data?.brochure ? <small>{data.brochure}</small> : ""}
                         </td>
                       </tr>
                       <tr>
@@ -1339,7 +1338,7 @@ const AddCollegeDetails = () => {
                           //     ))}
                           //   </>
                           //   :
-                          overviewFields?.map((field, index) => (
+                          overviewFields && overviewFields?.map((field, index) => (
                             <tr key={index}>
                               <div style={{ display: "flex" }}>
                                 <td>
@@ -1401,7 +1400,7 @@ const AddCollegeDetails = () => {
                       </tr>
                       <tr>
                         <th>Ranking and Accreditations</th>
-                        {ran_Acc?.map((field, index) => (
+                        {ran_Acc && ran_Acc?.map((field, index) => (
                           <tr key={index}>
                             <div style={{ display: "flex" }}>
                               <td>
@@ -2140,7 +2139,7 @@ const AddCollegeDetails = () => {
                       <tr>
                         <th>Admissions </th>
                         <td style={{ display: "flex" }}>Eligibility</td>
-                        {adm_Elg?.map((field, index) => (
+                        {adm_Elg && adm_Elg?.map((field, index) => (
                           <tr key={index}>
                             <div style={{ display: "flex" }}>
                               <td>
@@ -2451,16 +2450,10 @@ const AddCollegeDetails = () => {
                                 setGallary(files);
                               }}
                             />
-                            {data?.brochure ? <img
-                              src={
-                                STATIC_URL +
-                                "/images/" +
-                                JSON.parse(data?.gallery_links.split(','))
-                              }
-                              height={"150px"}
-                            /> : ""}
 
-
+                            {data?.brochure ? imageArray.length > 0 ? imageArray.map((img) =>
+                              <img src={STATIC_URL + "/images/" + img} height={"150px"} />
+                            ) : "" : ""}
                           </div>
                         </td>
                       </tr>
