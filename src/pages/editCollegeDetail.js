@@ -541,19 +541,19 @@ const CollegeListEdit = () => {
                               type="file"
                               name="gallery"
                               multiple
-                            // onChange={(e) => {
-                            //   const files = e.target.files;
-                            //   setGallary(files);
-                            // }}
+                            onChange={(e) => {
+                              const files = e.target.files;
+                              setGallary(files);
+                            }}
                             />
-                            {/* {data?.brochure ? <img
+                            {data?.brochure ? <img
                               src={
                                 STATIC_URL +
                                 "/images/" +
                                 JSON.parse(data?.gallery_links.split(','))
                               }
                               height={"150px"}
-                            /> : ""} */}
+                            /> : ""}
 
 
                           </div>
