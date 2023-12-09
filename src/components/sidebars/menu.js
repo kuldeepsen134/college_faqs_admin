@@ -80,5 +80,17 @@ const menu = [
       },
     ],
   },
+
+  {
+    name: "Users",
+    icon: "fa-tachometer-alt",
+    children: [
+      {
+        name: "All Users",
+        icon: "fa-tachometer-alt",
+        path: "/users/list",
+      },
+    ],
+  },
 ];
 export default menu;

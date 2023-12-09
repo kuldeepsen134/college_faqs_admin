@@ -14,6 +14,7 @@ import PushUpdate from "../pages/PushUpdate";
 import UpdatesList from "../pages/UpdatesList";
 import AnalyticsList from "../pages/AnalyticsList";
 import CollegeListEdit from "../pages/editCollegeDetail";
+import UsersList from "../pages/User";
 const path = [
   {
     path: "/",
@@ -78,6 +79,10 @@ const path = [
   {
     path: "/analytics/list",
     component: AnalyticsList,
+  },
+  {
+    path: "/users/list",
+    component: UsersList,
   },
   {
     path: "/login",
