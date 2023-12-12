@@ -95,7 +95,15 @@ const AddCollegeDetails = () => {
   // const [overview, setoverview] = useState(data?.overview || "");
   // const [key_highlight, setkey_highlight] = useState(data?.key_highlight || "");
   // const [adm_elg, setadm_elg] = useState(data?.adm_elg || "");
-  const [gallary, setGallary] = useState([]);
+
+  console.log('data?.imageArray>>>>>>>>', data);
+
+
+
+  const [gallary, setGallary] = useState(data?.gallery_links || []);
+
+
+
   const [sw_sc, setsw_sc] = useState(data?.sw_sc || "");
   const [sw_cb, setsw_cb] = useState(data?.sw_cb || "");
   const [sw_pi, setsw_pi] = useState(data?.sw_pi || "");
@@ -230,9 +238,7 @@ const AddCollegeDetails = () => {
 
   // new fields ends
 
-  const [backgroundImage, setBackgroundImage] = useState(
-    data?.background_image || null
-  );
+  const [backgroundImage, setBackgroundImage] = useState(data?.background_image || null);
   const [establishedYear, setEstablishedYear] = useState(
     data?.established_year || ""
   );
@@ -1012,9 +1018,7 @@ const AddCollegeDetails = () => {
                             id="background_image"
                             name="background_image"
                             multiple
-                            onChange={(e) =>
-                              setBackgroundImage(e.target.files[0])
-                            }
+                            onChange={(e) => setBackgroundImage(e.target.files[0])}
                           />
                           <div className="invalid-feedback">
                             Background Image is Required!
@@ -2263,23 +2267,6 @@ const AddCollegeDetails = () => {
                         ))}
                       </tr>
 
-                      {/* <tr>
-                        <th>Placement Highlights</th>
-                        <td>
-                          {" "}
-                          <textarea
-                            required
-                            className="form-control"
-                            rows="3"
-                            placeholder="Enter Placement Text"
-                            value={placements}
-                            onChange={(e) => setplacements(e.target.value)}
-                          ></textarea>{" "}
-                          <div className="invalid-feedback">
-                            Placements is Required!
-                          </div>
-                        </td>
-                      </tr> */}
                       <tr>
                         <th>Campus Facilities</th>
 
@@ -2445,10 +2432,7 @@ const AddCollegeDetails = () => {
                               type="file"
                               name="gallery"
                               multiple
-                              onChange={(e) => {
-                                const files = e.target.files;
-                                setGallary(files);
-                              }}
+                              onChange={(e) => setGallary(e?.target?.files)}
                             />
 
                             {data?.brochure ? imageArray.length > 0 ? imageArray.map((img) =>
