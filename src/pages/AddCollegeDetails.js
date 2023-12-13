@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "../api/axios";
 import Header from "../components/header/Header";
-import DropdownMultiselect from "react-multiselect-dropdown-bootstrap";
 import { toast } from "react-toastify";
-import { json, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { STATIC_URL } from "../config/config";
 
@@ -84,23 +83,13 @@ const AddCollegeDetails = () => {
 
   const { pathname } = useLocation()
 
-  // console.log('path', pathname);
-
   const data = useLocation().state;
-  const navigate = useNavigate();
 
   // console.log('data>>>>>>>>>>>', data);
-
-
   // const [overview, setoverview] = useState(data?.overview || "");
   // const [key_highlight, setkey_highlight] = useState(data?.key_highlight || "");
   // const [adm_elg, setadm_elg] = useState(data?.adm_elg || "");
 
-  console.log('data?.imageArray>>>>>>>>', data);
-
-
-
-  const [gallary, setGallary] = useState(data?.gallery_links || []);
 
 
 
@@ -126,128 +115,77 @@ const AddCollegeDetails = () => {
   const [cf_wifi, setcf_wifi] = useState(!!data?.cf_wifi || false);
   const [collegename, setcollegename] = useState(data?.college_name || "");
   const [location, setlocation] = useState(data?.location || "");
+
+  // **********//
   const [collegeimage, setcollegeimage] = useState(data?.college_image || "");
+  const [gallary, setGallary] = useState(data?.gallery_links || []);
+
+
+
 
   const [rowsData, setRowsData] = useState([]);
-  const [mba_marketing, setmba_marketing] = useState(
-    !!data?.mba_marketing || false
-  );
+
+  const [mba_marketing, setmba_marketing] = useState(!!data?.mba_marketing || false);
   const [mba_finance, setmba_finance] = useState(!!data?.mba_finance || false);
   const [mba_hr, setmba_hr] = useState(!!data?.mba_hr || false);
-  const [mba_ruralManagement, setmba_ruralManagement] = useState(
-    !!data?.mba_ruralManagement || false
-  );
-  const [mba_operations, setmba_operations] = useState(
-    !!data?.mba_operations || false
-  );
-  const [mba_healthcare, setmba_healthcare] = useState(
-    !!data?.mba_healthcare || false
-  );
-  const [mba_internationalBusiness, setmba_internationalBusiness] = useState(
-    !!data?.mba_internationalBusiness || false
-  );
-  const [mba_businessAnalytics, setmba_businessAnalytics] = useState(
-    !!data?.mba_businessAnalytics || false
-  );
-  const [mba_bankingFinance, setmba_bankingFinance] = useState(
-    !!data?.mba_bankingFinance || false
-  );
-  const [mba_advertisingCommunications, setmba_advertisingCommunications] =
-    useState(!!data?.mba_advertisingCommunications || false);
-  const [mba_agriBusiness, setmba_agriBusiness] = useState(
-    !!data?.mba_agriBusiness || false
-  );
-  const [
-    mba_corporateSocialResponsibility,
-    setmba_corporateSocialResponsibility,
-  ] = useState(!!data?.mba_corporateSocialResponsibility || false);
-  const [mba_digitalMarketing, setmba_digitalMarketing] = useState(
-    !!data?.mba_digitalMarketing || false
-  );
-  const [mba_entrepreneurship, setmba_entrepreneurship] = useState(
-    !!data?.mba_entrepreneurship || false
-  );
+
+  const [mba_ruralManagement, setmba_ruralManagement] = useState(!!data?.mba_ruralManagement || false);
+  const [mba_operations, setmba_operations] = useState(!!data?.mba_operations || false);
+  const [mba_healthcare, setmba_healthcare] = useState(!!data?.mba_healthcare || false);
+
+  const [mba_internationalBusiness, setmba_internationalBusiness] = useState(!!data?.mba_internationalBusiness || false);
+  const [mba_businessAnalytics, setmba_businessAnalytics] = useState(!!data?.mba_businessAnalytics || false);
+
+  const [mba_bankingFinance, setmba_bankingFinance] = useState(!!data?.mba_bankingFinance || false);
+  const [mba_advertisingCommunications, setmba_advertisingCommunications] = useState(!!data?.mba_advertisingCommunications || false);
+  const [mba_agriBusiness, setmba_agriBusiness] = useState(!!data?.mba_agriBusiness || false);
+
+  const [mba_corporateSocialResponsibility, setmba_corporateSocialResponsibility,] = useState(!!data?.mba_corporateSocialResponsibility || false);
+
+  const [mba_digitalMarketing, setmba_digitalMarketing] = useState(!!data?.mba_digitalMarketing || false);
+  const [mba_entrepreneurship, setmba_entrepreneurship] = useState(!!data?.mba_entrepreneurship || false);
   const [mba_energy, setmba_energy] = useState(!!data?.mba_energy || false);
-  const [mba_aviation, setmba_aviation] = useState(
-    !!data?.mba_aviation || false
-  );
+  const [mba_aviation, setmba_aviation] = useState(!!data?.mba_aviation || false);
   const [mba_event, setmba_event] = useState(!!data?.mba_event || false);
-  const [mba_familyBusiness, setmba_familyBusiness] = useState(
-    !!data?.mba_familyBusiness || false
-  );
-  const [mba_fashionDesign, setmba_fashionDesign] = useState(
-    !!data?.mba_fashionDesign || false
-  );
-  const [mba_financeManagement, setmba_financeManagement] = useState(
-    !!data?.mba_financeManagement || false
-  );
-  const [mba_importExport, setmba_importExport] = useState(
-    !!data?.mba_importExport || false
-  );
+  const [mba_familyBusiness, setmba_familyBusiness] = useState(!!data?.mba_familyBusiness || false);
+  const [mba_fashionDesign, setmba_fashionDesign] = useState(!!data?.mba_fashionDesign || false);
+  const [mba_financeManagement, setmba_financeManagement] = useState(!!data?.mba_financeManagement || false);
+  const [mba_importExport, setmba_importExport] = useState(!!data?.mba_importExport || false);
 
 
-  const [mba_informationTechnology, setmba_informationTechnology] = useState(
-    !!data?.mba_informationTechnology || false
-  );
+  const [mba_informationTechnology, setmba_informationTechnology] = useState(!!data?.mba_informationTechnology || false);
 
 
   // New states for new fields
 
-  const [supply_Chain_logistics_management, setsupply_Chain_logistics_management] = useState(
-    !!data?.supply_Chain_logistics_management || false
-  );
+  const [supply_Chain_logistics_management, setsupply_Chain_logistics_management] = useState(!!data?.supply_Chain_logistics_management || false);
 
-  const [infrastructure, setinfrastructure] = useState(
-    !!data?.infrastructure || false
-  );
+  const [infrastructure, setinfrastructure] = useState(!!data?.infrastructure || false);
 
-  const [pharmaceutical_management, setpharmaceutical_management] = useState(
-    !!data?.pharmaceutical_management || false
-  );
+  const [pharmaceutical_management, setpharmaceutical_management] = useState(!!data?.pharmaceutical_management || false);
 
-  const [oil_gas, setoil_gas] = useState(
-    !!data?.oil_gas || false
-  );
+  const [oil_gas, setoil_gas] = useState(!!data?.oil_gas || false);
 
-  const [sports_management, setsports_management] = useState(
-    !!data?.sports_management || false
-  );
+  const [sports_management, setsports_management] = useState(!!data?.sports_management || false);
 
-  const [retail, setretail] = useState(
-    !!data?.retail || false
-  );
-  const [telecom, settelecom] = useState(
-    !!data?.telecom || false
-  );
+  const [retail, setretail] = useState(!!data?.retail || false);
+  const [telecom, settelecom] = useState(!!data?.telecom || false);
 
-  const [textile, settextile] = useState(
-    !!data?.textile || false
-  );
-  const [tourism_ospitality, settourism_ospitality] = useState(
-    !!data?.tourism_ospitality || false
-  );
-  const [public_policy, setpublic_policy] = useState(
-    !!data?.public_policy || false
-  );
-  const [banking_insurance, setbanking_insurance] = useState(
-    !!data?.banking_insurance || false
-  );
-  const [service_management, setservice_management] = useState(
-    !!data?.service_management || false
-  );
+  const [textile, settextile] = useState(!!data?.textile || false);
+  const [tourism_ospitality, settourism_ospitality] = useState(!!data?.tourism_ospitality || false);
+  const [public_policy, setpublic_policy] = useState(!!data?.public_policy || false);
+  const [banking_insurance, setbanking_insurance] = useState(!!data?.banking_insurance || false);
+  const [service_management, setservice_management] = useState(!!data?.service_management || false);
 
   // new fields ends
-
   const [backgroundImage, setBackgroundImage] = useState(data?.background_image || null);
-  const [establishedYear, setEstablishedYear] = useState(
-    data?.established_year || ""
-  );
+
+  const [establishedYear, setEstablishedYear] = useState(data?.established_year || "");
   const [isTopNIRFCollege, setIsTopNIRFCollege] = useState(0);
   const [topCollege, setTopCollege] = useState(null);
 
-  const handleRadioChange = (value) => {
-    setIsTopNIRFCollege(value);
-  };
+  const handleRadioChange = (value) => { setIsTopNIRFCollege(value) };
+
   const [collegeType, setCollegeType] = useState(data?.college_type || "");
   const [tags, setTags] = useState([]);
   const [tag, setTag] = useState(data?.tags?.split(",") || []);
@@ -262,12 +200,12 @@ const AddCollegeDetails = () => {
   const [placement, setPlacement] = useState(data?.placement || "");
   const [size, setSize] = useState(data?.size || "");
   const [brochure, setBrochure] = useState(data?.brochure || "");
-  const [acceptenceRate, setAcceptenceRate] = useState(
-    data?.acceptence_rate || ""
-  );
+
+  const [acceptenceRate, setAcceptenceRate] = useState(data?.acceptence_rate || "");
   const { auth } = useAuth();
 
   const collegeTypes = ["Private", "Government"];
+
   useEffect(() => {
     const fetchPrograms = async () => {
       try {
@@ -373,7 +311,6 @@ const AddCollegeDetails = () => {
     },
   ]);
   const addInputField = () => {
-    console.log('dadaaaaaaaaaaaaaaaaaa');
     const sr_no = overviewFields.length + 1;
     const newField = {
       sr_no,
@@ -524,7 +461,6 @@ const AddCollegeDetails = () => {
 
   function modifyObject(inputArray) {
     const resultArray = [];
-    console.log('inputArray>>>>>>', inputArray);
     inputArray && inputArray?.forEach(item => {
       if (item.text.includes(',')) {
         resultArray.push(item.text);
@@ -533,7 +469,6 @@ const AddCollegeDetails = () => {
         resultArray.push(...texts);
       }
     });
-    console.log('resultArray>>>>', resultArray);
     return resultArray;
   }
   /**END FUNCTION */
@@ -642,8 +577,9 @@ const AddCollegeDetails = () => {
     }
 
     try {
-      console.log(isTopNIRFCollege);
+
       const formData = new FormData();
+
       formData.append("id", data?.id);
       formData.append("college_name", collegename);
       formData.append("location", location);
@@ -651,23 +587,25 @@ const AddCollegeDetails = () => {
       formData.append("college_type", collegeType);
       formData.append("state_id", stateId);
       formData.append("city_id", cityId);
+
+      // **************//
+
       formData.append("college_image", collegeimage || body?.college_image);
-      formData.append(
-        "background_image",
-        backgroundImage || body?.background_image
-      );
+      formData.append("background_image", backgroundImage || body?.background_image);
+
+      // **************//
 
       formData.append("overview[]", JSON.stringify(overviewFields));
       formData.append("key_highlight[]", JSON.stringify(key_High));
       formData.append("adm_elg[]", JSON.stringify(adm_Elg));
       formData.append("rankingArray[]", JSON.stringify(ran_Acc));
 
-
       formData.append("placement", placement);
       formData.append("ranking", ranking);
       formData.append("totalFees", totalFees);
       formData.append("NIRF", isTopNIRFCollege);
       formData.append("top_collage", topCollege);
+
       // formData.append("size", size);
       formData.append("acceptence_rate", acceptenceRate);
       formData.append("brochure", brochure || body?.brochure);
@@ -679,7 +617,6 @@ const AddCollegeDetails = () => {
       formData.append("sw_we", sw_we);
       // formData.append("placements", placements);
       formData.append("placements[]", JSON.stringify(placements));
-
       // formData.append("placements[]", modifyObject(placements));
 
       formData.append("sm_fb", sm_fb);
@@ -696,7 +633,9 @@ const AddCollegeDetails = () => {
       formData.append("cf_library", +cf_library);
       formData.append("cf_sports", +cf_sports);
       formData.append("cf_wifi", +cf_wifi);
+
       const galleryArray = Array.from(gallary);
+      console.log('gallarygallarygallarygallarygallary>>>>>', gallary);
       galleryArray.forEach((file, index) => {
         formData.append(`gallary-${index}`, file);
       });
@@ -776,10 +715,8 @@ const AddCollegeDetails = () => {
 
   useEffect(() => {
     if (pathname === '/colleges/edit') {
-      console.log('dataEdit collage>>>>', data);
+
       let overviewData = !!data && data?.get_overview?.map((res, i) => {
-
-
         return {
           sr_no: res.id,
           text: res.overview
@@ -791,7 +728,8 @@ const AddCollegeDetails = () => {
           sr_no: res.id,
           text: res.key_highlight
         }
-      })
+      });
+
       let eligibility = !!data && data?.get_adm_elg?.map((res, i) => {
         return {
           sr_no: res.id,
@@ -811,7 +749,6 @@ const AddCollegeDetails = () => {
           text: res.ranking_accreditation
         }
       })
-
 
       setOverviewFields(overviewData)
       setKey_High(key_High)
