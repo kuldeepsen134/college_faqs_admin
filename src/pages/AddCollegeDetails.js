@@ -13,6 +13,7 @@ const TableRows = ({ rowsData, deleteTableRows, handleChange }) => {
       <tr key={index}>
         <td>
           <input
+            style={{ width: "120px" }}
             type="text"
             className="form-control"
             id="program_name"
@@ -24,44 +25,50 @@ const TableRows = ({ rowsData, deleteTableRows, handleChange }) => {
         </td>
         <td>
           <input
+          style={{width:"90px"}}
+
             type="text"
             className="form-control"
             id="fees"
             name="fees"
-            placeholder="Enter Fees"
+            placeholder="Fees"
             value={fees}
             onChange={(e) => handleChange(index, e)}
           />
         </td>
         <td>
           <input
+          style={{width:"90px"}}
+
             type="text"
             className="form-control"
             id="seats"
             name="seats"
-            placeholder="Enter Available Seats"
+            placeholder="Seats"
             value={seats}
             onChange={(e) => handleChange(index, e)}
           />
         </td>
         <td>
           <input
+          style={{width:"90px"}}
             type="text"
             className="form-control"
             id="internship"
             name="internship"
-            placeholder="Enter Internship"
+            placeholder="Internship"
             value={internship}
             onChange={(e) => handleChange(index, e)}
           />
         </td>
         <td>
           <input
+          style={{width:"90px"}}
             type="text"
             className="form-control"
             id="scholarship"
             name="scholarship"
-            placeholder="Enter Scholarship"
+            placeholder="Scholarship"
             value={scholarship}
             onChange={(e) => handleChange(index, e)}
           />
@@ -760,7 +767,7 @@ const AddCollegeDetails = () => {
 
 
   let imageArray = ''
-  if (data) {
+  if (data?.gallery_links) {
     imageArray = JSON.parse(data?.gallery_links)
   }
 

@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import menu from "./menu";
-import adminLogo from "../../assets/img/AdminLTELogo.png";
+import adminLogo from "../../assets/img/logo192.png";
 import userLogo from "../../assets/img/user2-160x160.jpg";
 const ChildComponent = ({ child }) => {
   const location = useLocation();
@@ -48,7 +48,7 @@ const Sidebar = () => {
           </div>
           <div className="info">
             <a href="#" className="d-block">
-              Alexander Pierce
+              Admin Dashboard
             </a>
           </div>
         </div>
