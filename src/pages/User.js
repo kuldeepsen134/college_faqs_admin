@@ -10,7 +10,7 @@ const UsersList = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/api/admin/users/list', {
+                const response = await axios.get(`${STATIC_URL}/api/admin/users/list`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setUsers(response?.data?.users);
