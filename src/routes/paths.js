@@ -15,6 +15,7 @@ import UpdatesList from "../pages/UpdatesList";
 import AnalyticsList from "../pages/AnalyticsList";
 import CollegeListEdit from "../pages/editCollegeDetail";
 import UsersList from "../pages/User";
+import ContactUs from "../pages/contactUs";
 const path = [
   {
     path: "/",
@@ -83,6 +84,10 @@ const path = [
   {
     path: "/users/list",
     component: UsersList,
+  },
+  {
+    path: "/contact-us/list",
+    component: ContactUs,
   },
   {
     path: "/login",

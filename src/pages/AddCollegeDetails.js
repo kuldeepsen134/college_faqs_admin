@@ -7,8 +7,30 @@ import useAuth from "../hooks/useAuth";
 import { STATIC_URL } from "../config/config";
 
 const TableRows = ({ rowsData, deleteTableRows, handleChange }) => {
+  const { auth } = useAuth();
+  const [removeProgram, setRemoveProgram] = useState('')
+
+  useEffect(() => {
+    const removePrograms = async () => {
+      try {
+        const response = await axios.post("/admin/colleges/programs/delete", { id: removeProgram },
+          {
+            headers: { authorization: "Bearer " + auth.token },
+          }
+        );
+        console.log('response>>>>>5555555555 Remove Program>>', response);
+        toast.success(`${response?.data?.message}`)
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    removePrograms();
+  }, [removeProgram])
+
+
+
   return rowsData.map((data, index) => {
-    const { name, fees, seats, internship, scholarship } = data;
+    const { id, name, fees, seats, internship, scholarship } = data;
     return (
       <tr key={index}>
         <td>
@@ -25,7 +47,7 @@ const TableRows = ({ rowsData, deleteTableRows, handleChange }) => {
         </td>
         <td>
           <input
-          style={{width:"90px"}}
+            style={{ width: "90px" }}
 
             type="text"
             className="form-control"
@@ -38,7 +60,7 @@ const TableRows = ({ rowsData, deleteTableRows, handleChange }) => {
         </td>
         <td>
           <input
-          style={{width:"90px"}}
+            style={{ width: "90px" }}
 
             type="text"
             className="form-control"
@@ -51,7 +73,7 @@ const TableRows = ({ rowsData, deleteTableRows, handleChange }) => {
         </td>
         <td>
           <input
-          style={{width:"90px"}}
+            style={{ width: "90px" }}
             type="text"
             className="form-control"
             id="internship"
@@ -63,7 +85,7 @@ const TableRows = ({ rowsData, deleteTableRows, handleChange }) => {
         </td>
         <td>
           <input
-          style={{width:"90px"}}
+            style={{ width: "90px" }}
             type="text"
             className="form-control"
             id="scholarship"
@@ -76,7 +98,7 @@ const TableRows = ({ rowsData, deleteTableRows, handleChange }) => {
         <td>
           <button
             className="btn btn-outline-danger"
-            onClick={() => deleteTableRows(index)}
+            onClick={() => { deleteTableRows(index); setRemoveProgram(id) }}
           >
             x
           </button>
@@ -91,14 +113,6 @@ const AddCollegeDetails = () => {
   const { pathname } = useLocation()
 
   const data = useLocation().state;
-
-  // console.log('data>>>>>>>>>>>', data);
-  // const [overview, setoverview] = useState(data?.overview || "");
-  // const [key_highlight, setkey_highlight] = useState(data?.key_highlight || "");
-  // const [adm_elg, setadm_elg] = useState(data?.adm_elg || "");
-
-
-
 
   const [sw_sc, setsw_sc] = useState(data?.sw_sc || "");
   const [sw_cb, setsw_cb] = useState(data?.sw_cb || "");
@@ -213,6 +227,15 @@ const AddCollegeDetails = () => {
 
   const collegeTypes = ["Private", "Government"];
 
+
+  const [removeRac_Acc, setRemoveRac_Acc] = useState('')
+  const [removeKeyHlt, setremoveKeyHlt] = useState('')
+  const [removePlacement, setremovePlacement] = useState('')
+  const [removeAdm_Elg, setremoveAdm_Elg] = useState('')
+
+
+
+
   useEffect(() => {
     const fetchPrograms = async () => {
       try {
@@ -309,6 +332,78 @@ const AddCollegeDetails = () => {
     }
   }, [pathname])
 
+
+  useEffect(() => {
+    const removeRanking_Acc = async () => {
+      try {
+        const response = await axios.post("/admin/colleges/ran-acc/delete", { id: removeRac_Acc },
+          {
+            headers: { authorization: "Bearer " + auth.token },
+          }
+        );
+        console.log('response>>>>>5555555555 Remove accelarations5555>>', response);
+        toast.success(`${response?.data?.message}`)
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    removeRanking_Acc();
+  }, [removeRac_Acc])
+
+  useEffect(() => {
+    const removeKeyHlts = async () => {
+      try {
+        const response = await axios.post("/admin/colleges/key-heighlits/delete", { id: removeKeyHlt },
+          {
+            headers: { authorization: "Bearer " + auth.token },
+          }
+        );
+        console.log('response>>>>>5555555555 Remove Key heiglits>>', response);
+        toast.success(`${response?.data?.message}`)
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    removeKeyHlts();
+  }, [removeKeyHlt])
+
+
+  useEffect(() => {
+    const removePlacements = async () => {
+      try {
+        const response = await axios.post("/admin/colleges/placements/delete", { id: removePlacement },
+          {
+            headers: { authorization: "Bearer " + auth.token },
+          }
+        );
+        console.log('response>>>>>5555555555 Remove placements heiglits>>', response.data.message);
+        toast.success(`${response?.data?.message}`)
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    removePlacements();
+  }, [removePlacement])
+
+
+  useEffect(() => {
+    const removeAdm_Elgs = async () => {
+      try {
+        const response = await axios.post("/admin/colleges/adm-algs/delete", { id: removeAdm_Elg },
+          {
+            headers: { authorization: "Bearer " + auth.token },
+          }
+        );
+        console.log('response>>>>>5555555555 Remove Adminsion Eligibility>>', response.data.message);
+        toast.success(`${response?.data?.message}`)
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    removeAdm_Elgs();
+  }, [removeAdm_Elg])
+
+
   /** ADD MULTIPLE FIELDS CODE START FOR OVERVIEW*/
 
   const [overviewFields, setOverviewFields] = useState([
@@ -356,7 +451,11 @@ const AddCollegeDetails = () => {
     setRan_Acc((prevFields) => [...prevFields, newField]);
   };
 
-  const removeInputFieldRan_Acc = (index) => {
+  const removeInputFieldRan_Acc = (index, id) => {
+    if (id) {
+      setRemoveRac_Acc(id)
+    }
+
     setRan_Acc((prevFields) => prevFields.filter((_, i) => i !== index));
   };
 
@@ -376,6 +475,7 @@ const AddCollegeDetails = () => {
       text: ""
     },
   ]);
+
   const addInputFieldKey_High = () => {
     const sr_no = key_High.length + 1;
     const newField = {
@@ -385,7 +485,10 @@ const AddCollegeDetails = () => {
     setKey_High((prevFields) => [...prevFields, newField]);
   };
 
-  const removeInputFieldKey_High = (index) => {
+  const removeInputFieldKey_High = (index, id) => {
+    if (id) {
+      setremoveKeyHlt(id)
+    }
     setKey_High((prevFields) => prevFields.filter((_, i) => i !== index));
   };
 
@@ -414,7 +517,11 @@ const AddCollegeDetails = () => {
     setAdm_Elg((prevFields) => [...prevFields, newField]);
   };
 
-  const removeInputFieldAdm_Elg = (index) => {
+  const removeInputFieldAdm_Elg = (index, id) => {
+    if (id) {
+      setremoveAdm_Elg(id)
+    }
+
     setAdm_Elg((prevFields) => prevFields.filter((_, i) => i !== index));
   };
 
@@ -434,6 +541,7 @@ const AddCollegeDetails = () => {
       text: ""
     },
   ]);
+
   const addInputFieldplacements = () => {
     const sr_no = placements.length + 1;
     const newField = {
@@ -443,7 +551,11 @@ const AddCollegeDetails = () => {
     setplacements((prevFields) => [...prevFields, newField]);
   };
 
-  const removeInputFieldplacements = (index) => {
+  const removeInputFieldplacements = (index, id) => {
+    if (id) {
+      setremovePlacement(id)
+    }
+
     setplacements((prevFields) => prevFields.filter((_, i) => i !== index));
   };
 
@@ -705,6 +817,7 @@ const AddCollegeDetails = () => {
       const request = axios.post(url, formData, {
         headers: { authorization: "Bearer " + auth.token },
       });
+
       const response = await toast.promise(request, {
         pending: `${data ? "Updating" : "Adding"} College Details`,
         success: `College ${data ? "Updated" : "Added"} Successfully!`,
@@ -1348,6 +1461,7 @@ const AddCollegeDetails = () => {
                       </tr>
                       <tr>
                         <th>Ranking and Accreditations</th>
+
                         {ran_Acc && ran_Acc?.map((field, index) => (
                           <tr key={index}>
                             <div style={{ display: "flex" }}>
@@ -1365,17 +1479,11 @@ const AddCollegeDetails = () => {
                                   id="text"
                                   placeholder=""
                                   value={field.text}
-                                  onChange={(e) =>
-                                    updateFieldValueRan_Acc(
-                                      index,
-                                      "text",
-                                      e.target.value
-                                    )
-                                  }
+                                  onChange={(e) => updateFieldValueRan_Acc(index, "text", e.target.value)}
                                 />
                               </td>
                             </div>
-                            {overviewFields[index]?.sr_no == 1 ? (
+                            {ran_Acc[index]?.sr_no == 1 ? (
                               <td>
                                 <button
                                   type="button"
@@ -1390,14 +1498,14 @@ const AddCollegeDetails = () => {
                             ) : (
                               ""
                             )}
-                            {overviewFields[index]?.sr_no != 1 ? (
+                            {ran_Acc[index]?.sr_no != 1 ? (
                               <td>
                                 <button
                                   type="button"
                                   name="add_row"
                                   id="add_row"
                                   className="btn btn-danger btn-xs remove_row"
-                                  onClick={() => removeInputFieldRan_Acc(index)}
+                                  onClick={() => removeInputFieldRan_Acc(index, field.sr_no)}
                                 >
                                   X
                                 </button>
@@ -2114,7 +2222,7 @@ const AddCollegeDetails = () => {
                                 />
                               </td>
                             </div>
-                            {overviewFields[index]?.sr_no == 1 ? (
+                            {adm_Elg[index]?.sr_no == 1 ? (
                               <td>
                                 <button
                                   type="button"
@@ -2129,14 +2237,14 @@ const AddCollegeDetails = () => {
                             ) : (
                               ""
                             )}
-                            {overviewFields[index]?.sr_no != 1 ? (
+                            {adm_Elg[index]?.sr_no != 1 ? (
                               <td>
                                 <button
                                   type="button"
                                   name="add_row"
                                   id="add_row"
                                   className="btn btn-danger btn-xs remove_row"
-                                  onClick={() => removeInputFieldAdm_Elg(index)}
+                                  onClick={() => removeInputFieldAdm_Elg(index, field.sr_no)}
                                 >
                                   X
                                 </button>
@@ -2177,7 +2285,7 @@ const AddCollegeDetails = () => {
                                 />
                               </td>
                             </div>
-                            {overviewFields[index]?.sr_no == 1 ? (
+                            {placements[index]?.sr_no == 1 ? (
                               <td>
                                 <button
                                   type="button"
@@ -2192,14 +2300,14 @@ const AddCollegeDetails = () => {
                             ) : (
                               ""
                             )}
-                            {overviewFields[index]?.sr_no != 1 ? (
+                            {placements[index]?.sr_no != 1 ? (
                               <td>
                                 <button
                                   type="button"
                                   name="add_row"
                                   id="add_row"
                                   className="btn btn-danger btn-xs remove_row"
-                                  onClick={() => removeInputFieldplacements(index)}
+                                  onClick={() => removeInputFieldplacements(index, field.sr_no)}
                                 >
                                   X
                                 </button>
@@ -2522,7 +2630,7 @@ const AddCollegeDetails = () => {
                                 />
                               </td>
                             </div>
-                            {overviewFields[index]?.sr_no == 1 ? (
+                            {key_High[index]?.sr_no == 1 ? (
                               <td>
                                 <button
                                   type="button"
@@ -2537,14 +2645,14 @@ const AddCollegeDetails = () => {
                             ) : (
                               ""
                             )}
-                            {overviewFields[index]?.sr_no != 1 ? (
+                            {key_High[index]?.sr_no != 1 ? (
                               <td>
                                 <button
                                   type="button"
                                   name="add_row"
                                   id="add_row"
                                   className="btn btn-danger btn-xs remove_row"
-                                  onClick={() => removeInputFieldKey_High(index)}
+                                  onClick={() => removeInputFieldKey_High(index, field.sr_no)}
                                 >
                                   X
                                 </button>

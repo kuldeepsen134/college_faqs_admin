@@ -92,5 +92,19 @@ const menu = [
       },
     ],
   },
+
+
+  {
+    name: "Contact Us",
+    icon: "fa-tachometer-alt",
+    children: [
+      {
+        name: "All Contacts",
+        icon: "fa-tachometer-alt",
+        path: "/contact-us/list",
+      },
+    ],
+  },
+
 ];
 export default menu;
