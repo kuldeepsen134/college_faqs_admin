@@ -16,26 +16,14 @@ import { useNavigate } from "react-router-dom";
 const ActionDropdown = ({ data, loadData }) => {
   const { auth } = useAuth();
   const navigate = useNavigate();
+
   const deleteTag = async () => {
     try {
-      const request = axios.post(
-        "/admin/colleges/delete",
-        { id: data.id },
-        { headers: { authorization: "Bearer " + auth.token } }
-      );
-
-
-      let ddd = await request
-      console.log('request', ddd.data);
-      // if (ddd.data.success) {
-      //   toast.promise(request, {
-      //     success: `College Deleted Successfully!`,
-      //   })
-      // } else {
-      //   toast.promise(request, {
-      //     success: `Something went Wrong!`,
-      //   })
-      // }
+      const confirmation = window.confirm("Are you sure you want to delete this college?");
+      if (confirmation) {
+        const request = axios.post("/admin/colleges/delete", { id: data.id },
+          { headers: { authorization: "Bearer " + auth.token } }
+        )
 
       const response = await toast.promise(request, {
         pending: "Deleting College",
@@ -46,8 +34,8 @@ const ActionDropdown = ({ data, loadData }) => {
       if (response.data.success) {
         loadData();
       }
+    }
 
-      // console.log(response.data);
     } catch (err) {
       console.log(err);
     }
@@ -69,7 +57,6 @@ const ListAllColleges = () => {
   const loadData = async (cancelToken) => {
     try {
       const response = await axios.get("/admin/colleges/list",);
-      // console.log(response.data.colleges);
       response?.data?.success && setData(response.data.colleges);
     } catch (err) {
       console.error(err);
@@ -145,8 +132,13 @@ const ListAllColleges = () => {
   return (
     <>
       {/* <Header page="Colleges List" /> */}
+
+
+
       <section className="content">
+
         <div className="row">
+
           <div className="col">
             <div className="card card-primary">
               <div className="card-header">
